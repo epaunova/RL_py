@@ -29,3 +29,5 @@ python -m experiment_profiler.cli run \
   --output-dir /tmp/experiment-output
 
 python -m experiment_profiler.cli summarize --log-dir /tmp/experiment-output
+
+All file paths in the configuration are relative to the repository root. Do not modify files outside of the starter package unless absolutely necessary. Every requirement listed above is validated by the grader; implementations that skip logging, ignore configuration values, or compute metrics incorrectly will fail.
