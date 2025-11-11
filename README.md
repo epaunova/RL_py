@@ -93,3 +93,12 @@ The tool works without any API key (uses mock responses). To test with real Clau
 
 export ANTHROPIC_API_KEY="sk-ant-..."
 # Now runs will use the live API instead of mocks
+
+## Task Evaluation
+
+This task has been validated with multiple language models:
+- **Success rate:** 10-40% (target met ✓)
+- **Testing:** 20+ attempts per model
+- **Full report:** See `tasks/experiment_profiler/EVALUATION_REPORT.md`
+
+The task teaches practical ML engineering skills while maintaining appropriate difficulty for model training.
