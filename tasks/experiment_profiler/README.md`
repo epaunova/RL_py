@@ -1,0 +1,97 @@
+```markdown
+# Experiment Profiler - ML Engineering Task
+
+A hands-on coding challenge that simulates real ML engineering work: building a CLI tool to profile Claude model experiments.
+
+## What You'll Build
+
+Your goal is to complete a CLI tool that:
+1. Reads experiment configs (YAML)
+2. Runs a batch of prompts through Claude (or mock API)
+3. Logs all requests and responses in JSONL format
+4. Calculates quality metrics (fact coverage, refusal rate)
+5. Pretty-prints results in a table
+
+## Quick Start (5 minutes)
+
+```bash
+# 1. Install dependencies
+pip install -r ../../requirements.txt
+
+# 2. Test the reference implementation
+python -m reference_submission.experiment_profiler.cli run \
+    --config configs/sample_experiment.yaml \
+    --output-dir test_output
+
+# 3. View results
+python -m reference_submission.experiment_profiler.cli summarize \
+    --log-dir test_output/demo_run
+
+# 4. Run the grader
+python grader/grade.py --use-reference
+Expected output: All green checkmarks and metrics around 88% fact coverage!
+
+What's Already Done
+You don't start from scratch. We provide:
+
+tools/ - Complete utilities for API calls, logging, metrics
+configs/ - Sample experiment configuration
+data/ - Test dialogues + mock API responses
+grader/ - Automated testing harness
+What You Need to Implement
+The starter/ directory has TODOs in:
+
+cli.py - Wire up the run and summarize commands
+runner.py - Implement the main experiment loop
+Other modules are mostly scaffolding (config parsing, storage helpers)
+See prompt.md for the exact requirements the grader will check.
+
+How the API Client Works
+The tool is smart about API keys:
+
+Got ANTHROPIC_API_KEY? → Uses real Claude API
+No key? → Falls back to mock responses from data/mock_responses.json
+Both modes produce identical output format, so the grader works offline!
+
+Implementation Tips
+Tip 1: Start with the runner
+The ExperimentRunner.run() method is the heart of the system. You need to:
+
+# Load dialogues from config.dataset_path
+# For each dialogue:
+#   - Log the request
+#   - Call client.complete(sample)
+#   - Log the response
+#   - Compute metrics
+# Aggregate metrics and write summary
+Tip 2: Use the provided tools
+Don't reinvent the wheel - import from tasks.experiment_profiler.tools:
+
+from tasks.experiment_profiler.tools import dataset, logging_utils, metrics
+Tip 3: Check your paths
+The grader expects these exact files in the output directory:
+
+requests.jsonl
+responses.jsonl
+summary.json
+Tip 4: Test incrementally
+# After each change, run the grader on your starter code:
+python grader/grade.py
+
+# Or test manually:
+python -m starter.experiment_profiler.cli run \
+    --config configs/sample_experiment.yaml \
+    --output-dir test_run
+Success Criteria
+The grader checks:
+
+All 3 dialogues are processed
+Requests match the YAML config (model, temperature, max_tokens)
+Responses include completions and metadata
+Fact coverage ≥ 60% for non-safety prompts
+Safety prompt triggers refusal
+Metrics are computed correctly and match expected values
+Need More Details?
+Full task requirements: See prompt.md
+Example outputs: See ../docs/RESULTS.md
+Architecture deep dive: See ../docs/TECHNICAL_OVERVIEW.md
