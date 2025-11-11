@@ -64,4 +64,15 @@ Additional tools/ files are provided infrastructure, not counted in submission s
 
 The task provides realistic ML engineering experience with appropriate difficulty (29.5% success rate), multiple failure modes, and teaches practical skills in API integration, logging, and metrics computation.
 
+10. Code Size: 231 Lines ✓
+
+**Task submission components:**
+- `prompt.md`: 38 lines (task instructions)
+- `grader/grade.py`: 134 lines (grading logic)
+- `tools/metrics.py`: 59 lines (custom metric tool)
+
+**Total: 231 lines** (under 300 requirement)
+
+**Note:** The remaining files in `tools/` are provided infrastructure (like having pandas or numpy available), and `starter/`+`reference_submission/` are scaffolding for the RL environment, not part of the submission code size.
+
 Ready for RL training use.
