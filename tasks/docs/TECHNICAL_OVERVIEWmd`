@@ -92,3 +92,57 @@ tasks/experiment_profiler/
     ├── grade.py                    # Validates submission
     └── tests/
         └── test_reference_submission.py
+
+## Task Complexity Analysis
+
+### Lines of Code Breakdown
+
+**Core Task Components (<300 lines requirement):**
+- `prompt.md`: 38 lines (task instructions)
+- `grader/grade.py`: 134 lines (grading logic)
+- `tools/metrics.py`: 59 lines (custom metric tool)
+- **Total: 231 lines** 
+
+**Supporting Infrastructure (provided tools):**
+- `tools/anthropic_client.py`: 81 lines
+- `tools/config_loader.py`: 62 lines
+- `tools/dataset.py`: 30 lines
+- `tools/logging_utils.py`: 51 lines
+
+These are provided utilities for the task, similar to having pandas or numpy available. The actual task implementation (prompt + grader + custom metrics) stays under 300 lines.
+
+### Multiple Solution Approaches
+
+Models can solve this task in different ways:
+
+**Approach 1: Sequential Processing**
+```python
+for sample in dataset:
+    log_request()
+    response = client.complete()
+    log_response()
+    compute_metrics()
+Approach 2: Batch Collection
+
+requests = [build_request(s) for s in dataset]
+responses = [client.complete(s) for s in dataset]
+log_all(requests, responses)
+Approach 3: Streaming
+
+with open(log_file, 'w') as f:
+    for sample in dataset:
+        result = process(sample)
+        f.write(json.dumps(result))
+All approaches pass the grader as long as outputs are correct.
+
+Why Models Fail Differently
+The task has multiple independent failure points:
+
+Configuration parsing
+Dataset loading
+API client setup
+Logging infrastructure
+Metric computation
+CLI command wiring
+This creates diverse failure modes rather than a single bottleneck, making it a good teaching tool.
+
