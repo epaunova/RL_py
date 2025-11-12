@@ -1,6 +1,7 @@
+
 ```yaml
 experiment_id: demo_run
-model: claude-3-opus
+model: claude-3-haiku-20240307
 max_tokens: 200
 temperature: 0.2
 dataset_path: tasks/experiment_profiler/data/dialogues.json
