@@ -28,8 +28,8 @@ Mock responses are carefully crafted to:
 - Pass grading thresholds (fact_coverage ≥ 60%, correct refusal rate)
 
 **Real API vs Mock:**
-- **Mock responses** (no API key): fact_coverage = 88.89%, refusal_rate = 33.33% (passes grading)
-- **Real API responses** (with API key): Results vary by model (e.g., claude-3-haiku-20240307 gives 11.11% fact coverage)
+- **Mock responses** (no API key): fact_coverage = 88.89%, refusal_rate = 33.33% ✅ (passes grading)
+- **Real API responses** (with API key): Results vary by model (e.g., claude-haiku-4-5 gives 22.22% fact coverage)
 
 The system automatically switches between real API and mocks based on API key presence. Both modes are valid; mocks ensure consistent grading while real API tests actual model behavior.
 
