@@ -139,3 +139,31 @@ The task provides realistic ML engineering experience with appropriate difficult
 **Note:** The remaining files in `tools/` are provided infrastructure (like having pandas or numpy available), and `starter/`+`reference_submission/` are scaffolding for the RL environment, not part of the submission code size.
 
 Ready for RL training use.
+
+## Development Time Breakdown
+
+**Total time: ~5 hours**
+
+### Task Breakdown:
+1. **Initial setup & repo structure** (1 hour)
+   - Creating folder structure
+   - Setting up grader and tools
+   - Writing initial README
+
+2. **Core implementation** (2,5 hours)
+   - API client with mock fallback
+   - Runner and CLI implementation
+   - Metric calculations
+   - JSONL logging
+
+3. **Testing & debugging** (1 hours)
+   - Running grader multiple times
+   - Testing with real API
+   - Fixing bugs (token_count bug fix)
+   - Running 10+ test iterations for success rate
+
+4. **Documentation** (30 min)
+   - README, RESULTS.md, TECHNICAL_OVERVIEW.md
+   - Failure modes analysis
+   - Code comments and docstrings
+
