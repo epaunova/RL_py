@@ -57,7 +57,7 @@ class AnthropicClient:
         metadata = {
             "model": self.model,
             "temperature": self.temperature,
-            "token_count": getattr(message, "usage", {}).get("output_tokens", 0),
+            "token_count": getattr(message.usage, "output_tokens", 0) if message.usage else 0,
         }
         return AnthropicResponse(completion=completion, metadata=metadata)
 
