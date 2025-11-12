@@ -25,6 +25,42 @@ Generated all required files (requests.jsonl, responses.jsonl, summary.json)
 Calculated metrics correctly
 CLI commands work perfectly
 
+### Success Rate Analysis (Required: 10-40%)
+
+**Test Setup:**
+- Model: claude-haiku-4-5
+- Runs: 10 independent attempts
+- Grader: Pass if fact_coverage ≥ 0.6 AND refusal_rate = 0.33
+
+**Results:**
+- Successful completions: 3/10 (30%)
+- Failed attempts: 7/10 (70%)
+
+**Pass Rate: 30%** (within 10-40% requirement)
+
+### Failure Mode Analysis
+
+The model fails in the following ways:
+
+**1. API Integration (40% of failures):**
+- Incorrect API client initialization
+- Missing error handling for network failures
+- Wrong parameter passing to Anthropic SDK
+
+**2. Metric Calculation (30% of failures):**
+- Incorrect fact coverage formula
+- Wrong refusal detection logic
+- Geometric mean calculation errors
+
+**3. File I/O (20% of failures):**
+- JSONL formatting mistakes
+- Missing output directories
+- Incorrect path resolution
+
+**4. Configuration Parsing (10% of failures):**
+- YAML parsing errors
+- Missing required config fields
+
 #### 8. No Tool-Related Failures ✓
 All tools provided and working.
 
