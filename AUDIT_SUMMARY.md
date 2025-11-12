@@ -2,40 +2,28 @@
 
 ## Date: 2025-11-12
 
-
 ### Real API Testing Complete
 
 **Tested with:** Claude-3-Haiku (`claude-3-haiku-20240307`)
-
 **API Key:** Validated with live Anthropic API
 
+```bash
+export ANTHROPIC_API_KEY="sk-ant-api03-..."
+python -m tasks.experiment_profiler.reference_submission.experiment_profiler.cli run \
+    --config tasks/experiment_profiler/configs/sample_experiment.yaml \
+    --output-dir runs/real_api_test
+Real API Results:
 
-**Falls within required 10-40% range** ✓
+fact_coverage: 0.1111 (11.11%)
+geometric_mean: 0.3333 (33.33%)
+refusal_rate: 0.0000 (0%)
+Note: Real API results differ from mock responses (which are crafted for grading). The system correctly:
 
-#### 3. Prompt Matches Grader ✓
-All 6 requirements from prompt are validated by grader.
-
-#### 4. Multiple Solutions Allowed ✓
-Grader checks behavior, not specific code patterns.
-
-#### 5. All Requirements Checked ✓
-Grader validates: files created, dialogue processing, metadata, metrics calculations.
-
-#### 6. Teaches Novel Skills ✓
-- API integration with fallbacks
-- Structured logging (JSONL)
-- Custom metrics
-- CLI development
-
-#### 7. Multiple Failure Modes ✓
-5 distinct failure categories documented:
-- Incomplete logging (35%)
-- Metric calculation errors (25%)
-- Path resolution (20%)
-- CLI wiring (12%)
-- Mock client misuse (8%)
-
-See `tasks/experiment_profiler/EVALUATION_REPORT.md` for details.
+Detected API key automatically
+Made 3 real API calls to Claude
+Generated all required files (requests.jsonl, responses.jsonl, summary.json)
+Calculated metrics correctly
+CLI commands work perfectly
 
 #### 8. No Tool-Related Failures ✓
 All tools provided and working.
