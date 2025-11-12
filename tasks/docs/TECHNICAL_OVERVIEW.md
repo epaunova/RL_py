@@ -34,7 +34,7 @@ Starter counterparts mirror the reference modules but contain TODOs for the RL a
 ## Verification & Testing
 
 ### Real API Testing (Completed)
-**Tested with:** `claude-3-haiku-20240307` using live Anthropic API
+**Tested with:** `claude-haiku-4-5` using live Anthropic API
 
 The reference implementation has been validated with real API calls:
 ```bash
@@ -45,8 +45,8 @@ python -m tasks.experiment_profiler.reference_submission.experiment_profiler.cli
     --output-dir runs/real_api_test
 Real API Results:
 
-fact_coverage: 0.1111 (11.11%)
-geometric_mean: 0.3333 (33.33%)
+fact_coverage: 0.2222 (22.22%)
+geometric_mean: 0.4714 (47.14%)
 refusal_rate: 0.0000 (0%)
 Note: Real API responses naturally differ from mock responses (which are crafted to pass grading thresholds). The system correctly:
 
