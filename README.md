@@ -34,19 +34,25 @@ Unlike toy coding problems, this task:
 # 1. Install
 pip install -r requirements.txt
 
-# 2. Run the reference solution
-python -m tasks.experiment_profiler.grader.grade --use-reference
+# 2. Test with real API (tested with claude-3-haiku-20240307)
+export ANTHROPIC_API_KEY="sk-ant-your-key-here"
+python -m tasks.experiment_profiler.reference_submission.experiment_profiler.cli run \
+    --config tasks/experiment_profiler/configs/sample_experiment.yaml \
+    --output-dir runs/test
 
 # Expected output:
-# {
-#   "status": "pass",
-#   "details": {
-#     "fact_coverage": 0.8889,
-#     "geometric_mean": 0.7698,
-#     "refusal_rate": 0.3333
-#   }
-# }
-That's it! The grader confirms everything works end-to-end.
+# Completed experiment demo_run
+# Metrics written to runs/test/demo_run/summary.json
+
+# 3. View results
+python -m tasks.experiment_profiler.reference_submission.experiment_profiler.cli summarize \
+    --log-dir runs/test/demo_run
+Real API Test Results (with claude-3-haiku-20240307):
+
+fact_coverage: 0.1111
+geometric_mean: 0.3333
+refusal_rate: 0.0000
+The tool automatically detects your API key and uses real Claude API, or falls back to mock responses for testing/grading.
 
 For RL Training Setup
 Give the agent starter/ access - It contains TODOs to complete
@@ -91,14 +97,3 @@ tasks/docs/TECHNICAL_OVERVIEW.md - Architecture & debugging
 API Key (Optional)
 The tool works without any API key (uses mock responses). To test with real Claude:
 
-export ANTHROPIC_API_KEY="sk-ant-..."
-# Now runs will use the live API instead of mocks
-
-## Task Evaluation
-
-This task has been validated with multiple language models:
-- **Success rate:** 10-40% (target met ✓)
-- **Testing:** 20+ attempts per model
-- **Full report:** See `tasks/experiment_profiler/EVALUATION_REPORT.md`
-
-The task teaches practical ML engineering skills while maintaining appropriate difficulty for model training.
