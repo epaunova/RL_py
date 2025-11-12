@@ -1,3 +1,4 @@
+
 # ML Profiler: A Realistic Coding Challenge for RL Training
 
 This repo is a complete RL task for training language models on real-world ML engineering work.
@@ -34,7 +35,7 @@ Unlike toy coding problems, this task:
 # 1. Install
 pip install -r requirements.txt
 
-# 2. Test with real API (tested with claude-3-haiku-20240307)
+# 2. Test with real API (tested with claude-haiku-4-5)
 export ANTHROPIC_API_KEY="sk-ant-your-key-here"
 python -m tasks.experiment_profiler.reference_submission.experiment_profiler.cli run \
     --config tasks/experiment_profiler/configs/sample_experiment.yaml \
@@ -47,10 +48,10 @@ python -m tasks.experiment_profiler.reference_submission.experiment_profiler.cli
 # 3. View results
 python -m tasks.experiment_profiler.reference_submission.experiment_profiler.cli summarize \
     --log-dir runs/test/demo_run
-Real API Test Results (with claude-3-haiku-20240307):
+Real API Test Results (with claude-haiku-4-5):
 
-fact_coverage: 0.1111
-geometric_mean: 0.3333
+fact_coverage: 0.2222
+geometric_mean: 0.4714
 refusal_rate: 0.0000
 The tool automatically detects your API key and uses real Claude API, or falls back to mock responses for testing/grading.
 
@@ -94,6 +95,3 @@ tasks/experiment_profiler/README.md - Task walkthrough with tips
 tasks/experiment_profiler/prompt.md - Exact requirements for models
 tasks/docs/RESULTS.md - Real examples with explanations
 tasks/docs/TECHNICAL_OVERVIEW.md - Architecture & debugging
-API Key (Optional)
-The tool works without any API key (uses mock responses). To test with real Claude:
-
